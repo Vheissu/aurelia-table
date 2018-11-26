@@ -1,8 +1,7 @@
-import {bindable, bindingMode, DOM} from 'aurelia-framework';
+import { bindable, bindingMode, DOM } from 'aurelia-framework';
 
 export class AutPaginationCustomElement {
-
-  @bindable({defaultBindingMode: bindingMode.twoWay})currentPage;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) currentPage;
   @bindable pageSize;
   @bindable totalItems;
   @bindable hideSinglePage = true;
@@ -13,6 +12,7 @@ export class AutPaginationCustomElement {
   @bindable directionLinks = true;
   @bindable previousText = '<';
   @bindable nextText = '>';
+  @bindable disable = false;
 
   totalPages = 1;
   displayPages = [];
@@ -23,11 +23,19 @@ export class AutPaginationCustomElement {
   }
 
   bind() {
-    if (this.currentPage === undefined || this.currentPage === null || this.currentPage < 1) {
+    if (
+      this.currentPage === undefined ||
+      this.currentPage === null ||
+      this.currentPage < 1
+    ) {
       this.currentPage = 1;
     }
 
-    if (this.pageSize === undefined || this.pageSize === null || this.pageSize < 1) {
+    if (
+      this.pageSize === undefined ||
+      this.pageSize === null ||
+      this.pageSize < 1
+    ) {
       this.pageSize = 5;
     }
   }
@@ -54,15 +62,14 @@ export class AutPaginationCustomElement {
         currentPage: this.currentPage
       }
     });
-    this
-      .element
-      .dispatchEvent(event);
+    this.element.dispatchEvent(event);
   }
 
   calculatePages() {
-    this.totalPages = this.totalItems <= this.pageSize
-      ? 1
-      : Math.ceil(this.totalItems / this.pageSize);
+    this.totalPages =
+      this.totalItems <= this.pageSize
+        ? 1
+        : Math.ceil(this.totalItems / this.pageSize);
 
     if (isNaN(this.paginationSize) || this.paginationSize <= 0) {
       this.displayAllPages();
@@ -90,7 +97,7 @@ export class AutPaginationCustomElement {
 
     let activeTier = Math.ceil(this.currentPage / this.paginationSize);
 
-    let start = ((activeTier - 1) * this.paginationSize) + 1;
+    let start = (activeTier - 1) * this.paginationSize + 1;
     let end = start + this.paginationSize;
 
     if (activeTier > 1) {
@@ -112,7 +119,7 @@ export class AutPaginationCustomElement {
     }
 
     if (activeTier < totalTiers) {
-      displayPages.push({title: '...', value: end});
+      displayPages.push({ title: '...', value: end });
     }
 
     this.displayPages = displayPages;
@@ -127,13 +134,13 @@ export class AutPaginationCustomElement {
   }
 
   nextPage() {
-    if (this.currentPage < this.totalPages) {
+    if (this.currentPage < this.totalPages && !this.disable) {
       this.currentPage++;
     }
   }
 
   previousPage() {
-    if (this.currentPage > 1) {
+    if (this.currentPage > 1 && !this.disable) {
       this.currentPage--;
     }
   }

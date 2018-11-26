@@ -2,33 +2,47 @@
   <template replaceable part="pagination">
     <nav hide.bind="hideSinglePage && totalPages === 1">
       <ul class="pagination">
-
-        <li class-name.bind="currentPage === 1 ? 'disabled' : ''" if.bind="boundaryLinks">
+        <li
+          class="${currentPage === 1 ? 'disabled' : ''} ${disable ? 'disabled' : ''}"
+          if.bind="boundaryLinks"
+        >
           <a aria-label="Previous" click.delegate="firstPage()">
-                        <span aria-hidden="true" innerhtml.bind="firstText"></span>
-                    </a>
+            <span aria-hidden="true" innerhtml.bind="firstText"></span>
+          </a>
         </li>
 
-        <li class-name.bind="currentPage === 1 ? 'disabled' : ''" if.bind="directionLinks">
+        <li
+          class="${currentPage === 1 ? 'disabled' : ''} ${disable ? 'disabled' : ''}"
+          if.bind="directionLinks"
+        >
           <a aria-label="Previous" click.delegate="previousPage()">
-                        <span aria-hidden="true" innerhtml.bind="previousText"></span>
-                    </a>
+            <span aria-hidden="true" innerhtml.bind="previousText"></span>
+          </a>
         </li>
 
-        <li repeat.for="page of displayPages" class-name.bind="currentPage === page.value ? 'active' : ''">
+        <li
+          repeat.for="page of displayPages"
+          class="${currentPage === page.value ? 'active' : ''}"
+        >
           <a click.delegate="selectPage(page.value)">${page.title}</a>
         </li>
 
-        <li class-name.bind="currentPage === totalPages ? 'disabled' : ''" if.bind="directionLinks">
+        <li
+          class="${currentPage === totalPages ? 'disabled' : ''} ${disable ? 'disabled' : ''}"
+          if.bind="directionLinks"
+        >
           <a aria-label="Next" click.delegate="nextPage()">
-                        <span aria-hidden="true" innerhtml.bind="nextText"></span>
-                    </a>
+            <span aria-hidden="true" innerhtml.bind="nextText"></span>
+          </a>
         </li>
 
-        <li class-name.bind="currentPage === totalPages ? 'disabled' : ''" if.bind="boundaryLinks">
+        <li
+          class="${currentPage === totalPages ? 'disabled' : ''} ${disable ? 'disabled' : ''}"
+          if.bind="boundaryLinks"
+        >
           <a aria-label="Previous" click.delegate="lastPage()">
-                        <span aria-hidden="true" innerhtml.bind="lastText"></span>
-                    </a>
+            <span aria-hidden="true" innerhtml.bind="lastText"></span>
+          </a>
         </li>
       </ul>
     </nav>

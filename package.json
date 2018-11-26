@@ -1,7 +1,7 @@
 {
   "name": "@jmvtrinidad/au-table",
   "version": "0.2.2",
-  "description": "A fork on project by Hector Romero. Added some support for server-side processing. A simple and powerful data table for Aurelia.",
+  "description": "A fork of a fork on project by Hector Romero. Added some support for server-side processing. A simple and powerful data table for Aurelia.",
   "keywords": [
     "aurelia",
     "table",
