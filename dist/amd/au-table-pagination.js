@@ -55,7 +55,7 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _class2, _temp;
+  var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _class2, _temp;
 
   var AutPaginationCustomElement = exports.AutPaginationCustomElement = (_dec = (0, _aureliaFramework.bindable)({ defaultBindingMode: _aureliaFramework.bindingMode.twoWay }), (_class = (_temp = _class2 = function () {
     function AutPaginationCustomElement(element) {
@@ -82,6 +82,8 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
       _initDefineProp(this, 'previousText', _descriptor10, this);
 
       _initDefineProp(this, 'nextText', _descriptor11, this);
+
+      _initDefineProp(this, 'disable', _descriptor12, this);
 
       this.totalPages = 1;
       this.displayPages = [];
@@ -190,13 +192,13 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     };
 
     AutPaginationCustomElement.prototype.nextPage = function nextPage() {
-      if (this.currentPage < this.totalPages) {
+      if (this.currentPage < this.totalPages && !this.disable) {
         this.currentPage++;
       }
     };
 
     AutPaginationCustomElement.prototype.previousPage = function previousPage() {
-      if (this.currentPage > 1) {
+      if (this.currentPage > 1 && !this.disable) {
         this.currentPage--;
       }
     };
@@ -256,6 +258,11 @@ define(['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
     enumerable: true,
     initializer: function initializer() {
       return '>';
+    }
+  }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'disable', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: function initializer() {
+      return false;
     }
   })), _class));
 });

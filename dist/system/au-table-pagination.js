@@ -3,7 +3,7 @@
 System.register(['aurelia-framework'], function (_export, _context) {
   "use strict";
 
-  var bindable, bindingMode, DOM, _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _class2, _temp, AutPaginationCustomElement;
+  var bindable, bindingMode, DOM, _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _class2, _temp, AutPaginationCustomElement;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -86,6 +86,8 @@ System.register(['aurelia-framework'], function (_export, _context) {
           _initDefineProp(this, 'previousText', _descriptor10, this);
 
           _initDefineProp(this, 'nextText', _descriptor11, this);
+
+          _initDefineProp(this, 'disable', _descriptor12, this);
 
           this.totalPages = 1;
           this.displayPages = [];
@@ -194,13 +196,13 @@ System.register(['aurelia-framework'], function (_export, _context) {
         };
 
         AutPaginationCustomElement.prototype.nextPage = function nextPage() {
-          if (this.currentPage < this.totalPages) {
+          if (this.currentPage < this.totalPages && !this.disable) {
             this.currentPage++;
           }
         };
 
         AutPaginationCustomElement.prototype.previousPage = function previousPage() {
-          if (this.currentPage > 1) {
+          if (this.currentPage > 1 && !this.disable) {
             this.currentPage--;
           }
         };
@@ -260,6 +262,11 @@ System.register(['aurelia-framework'], function (_export, _context) {
         enumerable: true,
         initializer: function initializer() {
           return '>';
+        }
+      }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'disable', [bindable], {
+        enumerable: true,
+        initializer: function initializer() {
+          return false;
         }
       })), _class)));
 

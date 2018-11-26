@@ -1,4 +1,4 @@
-var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _class2, _temp;
+var _dec, _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _class2, _temp;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -68,6 +68,8 @@ export let AutPaginationCustomElement = (_dec = bindable({ defaultBindingMode: b
     _initDefineProp(this, 'previousText', _descriptor10, this);
 
     _initDefineProp(this, 'nextText', _descriptor11, this);
+
+    _initDefineProp(this, 'disable', _descriptor12, this);
 
     this.totalPages = 1;
     this.displayPages = [];
@@ -176,13 +178,13 @@ export let AutPaginationCustomElement = (_dec = bindable({ defaultBindingMode: b
   }
 
   nextPage() {
-    if (this.currentPage < this.totalPages) {
+    if (this.currentPage < this.totalPages && !this.disable) {
       this.currentPage++;
     }
   }
 
   previousPage() {
-    if (this.currentPage > 1) {
+    if (this.currentPage > 1 && !this.disable) {
       this.currentPage--;
     }
   }
@@ -240,5 +242,10 @@ export let AutPaginationCustomElement = (_dec = bindable({ defaultBindingMode: b
   enumerable: true,
   initializer: function () {
     return '>';
+  }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'disable', [bindable], {
+  enumerable: true,
+  initializer: function () {
+    return false;
   }
 })), _class));
